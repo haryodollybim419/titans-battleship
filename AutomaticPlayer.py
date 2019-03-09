@@ -1,6 +1,7 @@
 import random
+from Player import Player
 
-class AutomaticPlayer:
+class AutomaticPlayer(Player):
     """ AutomaticPlayer represents the computer that an actual \
     user will play against.
     """
@@ -8,76 +9,7 @@ class AutomaticPlayer:
     def __init__(self):
         """ Initializes the AutomaticPlayer class.
         """
-        self.score = []  # Keeps track of the battleships that have been hit.
-        self.placements = [[], [], [], [], [], [], [], [], [], []]  # [x][y] Computer's battleship in grid format
-        for i in range(10):
-            for j in range(10):
-                self.placements[i].append(0)
-        self.battleship_set = []  # Computer's battleship in (start_x, start_y, end_x, end_y, length) format
-        self.selection_history = []  # Keeps track of computer's selection to prevent repeats.
-
-    def get_total_score(self):
-        """" Sums up the total score obtained by the AutomaticPlayer.
-        Input variables:
-            self: The AutomaticPlayer object
-        Returns:
-            total(integer): Summation of score """
-        total = 0
-        for ship_length in range(len(self.score)):
-            total += ship_length
-
-        return total
-
-    def guess_location(self):
-        """ Represents the AutomaticPlayer's guesses.
-         Guesses will not repeat.
-         Returns:
-             (x,y) coordinate of guess."""
-        while True:
-            x = random.randint(0, 9)
-            y = random.randint(0, 9)
-            if (x, y) not in self.selection_history:
-                self.selection_history.append((x, y))
-                return (x, y)
-
-    def valid_location(self, grid, x, y, ship_len, ship_orientation):
-        """ Determines whether ship with length ship_len and orientation ship_orientation can be placed in grid at x,y.
-        Helper function for set_battleships.
-        Input variables:
-            grid: A double array that represents the board
-            x: Integer representing x location of the battleship's head
-            y: Integer representing y location of the battleship's head
-            ship_len: The length of the battleship
-            ship_orientation: Will be 0 if horizontal, 1 if vertical
-        Returns:
-            Bool: 1 if valid, 0 if not valid"""
-        if ship_orientation == 0:  # Horizontal ship
-            for column in grid[x: x + ship_len]:
-                if column[y] == 1:
-                    return 0
-        else:  # Vertical ship, x is constant
-            for row in range(y-ship_len + 1, y+1):
-                if grid[x][row] == 1:
-                    return 0
-        return 1
-
-    def update_internal_board(self, grid, x, y, ship_len, ship_orientation):
-        """Once determined that the location is valid, we will update grid to contain newly placed battleship.
-        Helper function for set_battleships.
-        Input variable:
-            grid: A double array that represents the board
-            x: Integer representing x location of the battleship's head
-            y: Integer representing y location of the battleship's head
-            ship_len: The length of the battleship
-            ship_orientation: Will be 0 if horizontal, 1 if vertical
-        Returns:
-            null"""
-        if ship_orientation == 0:  # Horizontal ship
-            for column in grid[x: x + ship_len]:
-                column[y] = 1
-        else:  # Vertical ship, x is constant
-            for row in range(y-ship_len + 1, y + 1):
-                grid[x][row] = 1
+        super().__init__()
 
     def set_battleships(self):
         """ Plots all of AutomaticPlayer's battleship. Should only be called once.
@@ -90,7 +22,7 @@ class AutomaticPlayer:
 
         It updates the object variable battleship_set, which is a list of 5 elements.
         Each element represents the battleship \
-        using the format:11
+        using the format:
         (start_x, start_y, end_x, end_y, size)
         """
         battleship_length = 1
