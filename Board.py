@@ -21,6 +21,13 @@ class Board:
                 self.status[i].append(NEUTRAL)
 
 
+    def all_ships_sunk(self):
+        if self.ships == []:
+            return True
+        else:
+            return False
+
+
     def move(self, x, y):
         ans = []
         if (0 <= x <= 9) and (0 <= y <= 9):
