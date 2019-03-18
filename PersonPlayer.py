@@ -1,5 +1,4 @@
-import pygame
-from pygame.locals import *
+from Player import Player
 
 class PersonPlayer:
     """ PersonPlayer represents the human that ComputerPlayer will play against.
@@ -8,73 +7,32 @@ class PersonPlayer:
     def __init__(self):
         """ Initializes the PersonPlayer class.
         """
-        self.score = []  # Keeps track of the battleships that have been hit.
-        self.placements = []  # Log of all the person's battleship
-        self.selection_history = []  # Keeps track of person's selection to prevent repeats.
+        super().__init__()
 
-    def get_total_score(self):
-        """" Sums up the total score obtained by the PersonPlayer.
-        Input variables:
-            self: The PersonPlayer object
-        Returns:
-            total(integer): Summation of score """
-        total = 0
-        for ship_length in range(len(self.score)):
-            total += ship_length
-        return total
+    def set_battleship(self, x_head, y_head, battleship_length):
+        """ Plots one of PersonPlayer's battleship with size: length starting at coordinate (x_head, y_head).
 
-    def is_finished_game(self, event_type):
-        """ Given the event_type, returns whether or not the PersonPlayer's click represented an exit from the game.
-         Returns:
-             True or False depending on the event_type"""
-        return (event_type == QUIT) or (event_type == KEYDOWN and event_key == K_ESCAPE)
-
-    def get_user_click(self):
-        """ Represents the PersonPlayer's click.
-         Guesses will not repeat.
-         Returns:
-             (x,y) coordinate of guess."""
-        pygame.init()
-        running = True
-        coordinates=(-1,-1)
-        clicks=5
-        while running:
-            for event in pygame.event.get():
-                if self.is_finished_game(event.type):
-                    running = False
-                if event.type == MOUSEBUTTONDOWN:
-                    coordinates = pygame.mouse.get_pos()
-                    self.set_battleship(clicks)
-                    clicks = clicks - 1
-                if clicks == 0:
-                    running = False
-        if coordinates==(-1,-1):
-            print("Invalid box selected, please try again")
-        return coordinates
-
-    def set_location(self):
-        """ Represents the PersonPlayer's guesses.
-         Guesses will not repeat.
-         Returns:
-             (x,y) coordinate of guess."""
-        coordinates=self.get_user_click()
-        if coordinates == (-1,-1):
-            return coordinates
-        if coordinates not in self.selection_history:
-            self.selection_history.append((x, y))
-            return (x, y)
-
-    def set_battleship(self, length):
-        """ Plots one of PersonPlayer's battleship with size: length.
-
-        Adds a list of 5 elements to the placements list. Each element represents the battleship \
-        using the format:
+        Adds a list of 5 elements to the placements list. Each element represents the battleship using the format:
         (start_x, start_y, end_x, end_y, size)
 
         """
-        start_x=self.set_location[0]
-        start_y=self.set_location[1]
-        end_x=self.set_location[0]+size-1
-        end_y=self.set_location[1]+size-1
-        self.placements.append((start_x, start_y, end_x, end_y, length))  # Ship of size length at plot (start_x, start_y) to (end_x, end_y) (vertical).
+        validity = 0
+        h_or_v = -1 #-1 represents the battleships orientation being undecided
+        x_head = self.set_location[0]
+        y_head = self.set_location[1]
+        if ((x_head + battleship_length - 1 < 10)):
+            h_or_v = 0 #0 represents the battleships orientation being horizontal
+            validity = self.valid_location(self.placements, x_head, y_head, battleship_length, h_or_v)
+        elif ((y_head - battleship_length - 1 >= 0)):  # Ship is within board
+            h_or_v = 1 #1 represents the battleships orientation being vertical
+            validity = self.valid_location(self.placements, x_head, y_head, battleship_length, h_or_v)
+            
+        if validity == 1:  # Adding this battleship into internal board and battleship_set array
+            self.update_internal_board(self.placements, x_head, y_head, battleship_length, h_or_v)
+            if h_or_v == 0:
+                self.battleship_set.append(
+                    (x_head, y_head, x_head + battleship_length - 1, y_head, battleship_length))
+            else:
+                self.battleship_set.append(
+                    (x_head, y_head, x_head, y_head - battleship_length + 1, battleship_length))
 
