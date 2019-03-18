@@ -26,17 +26,16 @@ class Player:
 
         return total
 
-    def guess_location(self):
-        """ Represents the Player's guesses.
-         Guesses will not repeat.
-         Returns:
-             (x,y) coordinate of guess."""
-        while True:
-            x = random.randint(0, 9)
-            y = random.randint(0, 9)
-            if (x, y) not in self.selection_history:
-                self.selection_history.append((x, y))
-                return (x, y)
+    def avoid_plots(self, plot_list):
+        """ Adds plot to the player's selection history to prevent guessing in invalid locations.
+        This function is called when a battleship has been hit. The plot_list will consist of the
+        remaining plots of the battleship.
+        Input variables:
+            plot_list: A list of tuples in format (x,y) which represent plots that must be avoided.
+        Returns:
+            None"""
+        for plot in plot_list:
+            self.selection_history.append(plot)
 
     def valid_location(self, grid, x, y, ship_len, ship_orientation):
         """ Determines whether ship with length ship_len and orientation ship_orientation can be placed in grid at x,y.

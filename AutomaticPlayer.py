@@ -11,6 +11,18 @@ class AutomaticPlayer(Player):
         """
         super().__init__()
 
+    def guess_location(self):
+        """ Represents the Player's guesses.
+         Guesses will not repeat.
+         Returns:
+             (x,y) coordinate of guess."""
+        while True:
+            x = random.randint(0, 9)
+            y = random.randint(0, 9)
+            if (x, y) not in self.selection_history:
+                self.selection_history.append((x, y))
+                return (x, y)
+
     def set_battleships(self):
         """ Plots all of AutomaticPlayer's battleship. Should only be called once.
         Will plot the following ships:
