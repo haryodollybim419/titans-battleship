@@ -6,7 +6,7 @@ from Board import Board
 battleships, total number of remaining battleships in the game and the score of the player.
 """
 class Stats():
-    def __init__():
+    def __init__(self):
         """Initializes the Stats class.
         """
         self.score = 0
