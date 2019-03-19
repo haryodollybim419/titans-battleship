@@ -1,6 +1,6 @@
 from Player import Player
 
-class PersonPlayer:
+class PersonPlayer(Player):
     """ PersonPlayer represents the human that ComputerPlayer will play against.
     """
 
@@ -18,8 +18,6 @@ class PersonPlayer:
         """
         validity = 0
         h_or_v = -1 #-1 represents the battleships orientation being undecided
-        x_head = self.set_location[0]
-        y_head = self.set_location[1]
         if ((x_head + battleship_length - 1 < 10)):
             h_or_v = 0 #0 represents the battleships orientation being horizontal
             validity = self.valid_location(self.placements, x_head, y_head, battleship_length, h_or_v)
@@ -36,3 +34,4 @@ class PersonPlayer:
                 self.battleship_set.append(
                     (x_head, y_head, x_head, y_head - battleship_length + 1, battleship_length))
 
+        return self.battleship_set
