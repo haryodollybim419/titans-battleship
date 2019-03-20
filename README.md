@@ -4,7 +4,7 @@
 
 ## Game Description
 Battleship is a 2 player guessing game in which players take turns trying to guess the location of their opponent’s battleship.  
-At the beginning, each player plots 5 battleships that can either have a horizontal or vertical orientation and will be of lengths 
+At the beginning, each player plots 5 battleships of lengths 
 1, 2, 3, 4 and 5. The plots selected by the player will be hidden from their opponent. 
 The objective of the game is to correctly guess the locations of your opponent’s battleship before they guess the location of your battleships.
 
