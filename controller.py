@@ -153,13 +153,14 @@ class Begin:
             x -= 1
     def set_player_ships(self, x_head, y_head, battleship_length):
         person = self.person.set_battleship(x_head, y_head, battleship_length)
-        person_ships = person[-1]
-        #for person_ships in ships:
-        self.user_board.add_ship(person_ships[0], person_ships[1],\
-                                     person_ships[2], person_ships[3], person_ships[4])
-        P_SHIPS.append((person_ships[0], person_ships[1],\
-                                     person_ships[2], person_ships[3], person_ships[4]))
-        print("person ships: ",  person_ships)
+        if(len(person) > 0):
+            person_ships = person[-1]
+            #for person_ships in ships:
+            self.user_board.add_ship(person_ships[0], person_ships[1],\
+                                         person_ships[2], person_ships[3], person_ships[4])
+            P_SHIPS.append((person_ships[0], person_ships[1],\
+                                         person_ships[2], person_ships[3], person_ships[4]))
+            print("person ships: ",  person_ships)
 
     
     def display_score(self):
@@ -348,11 +349,10 @@ if __name__ == '__main__':
                         title = pygame.font.SysFont("'couriernew'", 40)
                         title.set_bold(True)
                         main_title = title.render("Player wins!", True, (0, 128, 0))
-                        win = 1
                         main_board.blit(main_title, (210, 40))
                         start.display_score()
                         start.display_stats()
-                        running = False
+                        win = 1
                     pygame.draw.rect(start.vboard,BLACK,
                         pygame.Rect(960, 300, 40, 40))
                     
@@ -377,12 +377,10 @@ if __name__ == '__main__':
                         title = pygame.font.SysFont("'couriernew'", 40)
                         title.set_bold(True)
                         main_title = title.render("Computer wins!", True, (0, 128, 0))
-                        win = 1
                         main_board.blit(main_title, (175, 40))
                         start.display_score()
                         start.display_stats()
-                        running = False
-                    #start.guesses += 1
+                        win = 1
                     pygame.draw.rect(start.vboard,BLACK,
                         pygame.Rect(960, 300, 40, 40))
                     start.turns = 0
