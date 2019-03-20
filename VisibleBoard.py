@@ -41,12 +41,14 @@ class VisibleBoard(Board.Board):
         move_return, ans = self.move(x, y)
 
         if (move_return, ans) == (None, []):
-            return
+            return ans
         elif (move_return, ans) == (Board.MISS, []):
                 self.miss(x, y)
+                return ans
         else:
             for (xc, yc) in ans:
                self.hit(xc, yc)
+            return ans
 
 
     def hit(self, x, y):
