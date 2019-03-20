@@ -40,8 +40,8 @@ class Board:
                         for coord in ship:
                             self.status[coord[0]][coord[1]] = HIT
                             ans.append(coord)
-                    self.ships.remove(ship)
-                    return HIT, ans
+                        self.ships.remove(ship)
+                        return HIT, ans
         return (None, [])
 
 
