@@ -50,10 +50,10 @@ Once either all of the computer’s or the user’s battleship plots have been c
 </p>
 
  4. Midgame
- <br /> The squares containing the battelship are turned red if you successfully hit any one square containing the battleship. 
- <br /> The squares are turned blue if you fail to hit a battleship. 
+ <br /> The squares containing the battelship turn red if you successfully hit any one square containing the battleship. 
+ <br /> The square turns blue if you fail to hit a battleship. 
  <br /> The 'Number of ships' indicate the total number of battleships in the game. 
- <br /> The 'Remaning ships' indicate the remaining number of battleships in the game. 
+ <br /> The 'Remaining ships' indicate the remaining number of battleships in the game. 
  <br /> The 'Number of guesses' keep track of user's turns. 
   <p align="left">
 <img width="650" height="400" src="https://user-images.githubusercontent.com/47309090/54719654-cdd1ba00-4b33-11e9-81a8-926d82039aee.png">
