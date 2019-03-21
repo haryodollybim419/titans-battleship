@@ -30,11 +30,7 @@ Once either all of the computer’s or the user’s battleship plots have been c
   - Clone the repo: ```$ git clone https://github.com/haryodollybim419/titans-battleship.git```.
   - Run the controller.py: ```$ python controller.py```.
  
-
-## How to Play
-
-
-## Screenshots 
+## How to Play 
   1. Title Screen 
   <p align="left">
   <img width="650" height="400" src="https://user-images.githubusercontent.com/47309090/54718306-97467000-4b30-11e9-8410-205aa249df90.png">
