@@ -13,7 +13,7 @@ GREY=(128,128,128)
 A Rectangle is an object with a width, height, x-coordinate and y-coordinate.
 '''
 class Rectangle:
-
+    
     def __init__(self,x, y, width, height):
         self.x = x
         self.y = y
@@ -37,6 +37,9 @@ class VisibleBoard(Board.Board):
         self.display = display
 
 
+    '''
+    Checks the status of the Rectangle at (x, y) and changes the colour appropriately.
+    '''
     def viewable_move(self, x, y):
         move_return, ans = self.move(x, y)
 
@@ -50,19 +53,26 @@ class VisibleBoard(Board.Board):
                self.hit(xc, yc)
             return ans
 
-
+    '''
+    Changes the colour of the Rectangle at (x, y) to red.
+    '''
     def hit(self, x, y):
         if (0 <= x <= 9) and (0 <= y <= 9):
             rect = self.rectangles[x][y]
             pygame.draw.rect(self.display, RED, (rect.x, rect.y, rect.width, rect.height))
 
-
+    '''
+    Changes the colour of the Rectangle at (x, y) to blue.
+    '''
     def miss(self, x, y):
         if (0 <= x <= 9) and (0 <= y <= 9):
             rect = self.rectangles[x][y]
             pygame.draw.rect(self.display, BLUE, (rect.x, rect.y, rect.width, rect.height))
 
-
+    '''
+    Adds a ship to the VisibleBoard and changes the colour of the Rectangles
+    of that ship appropriately.
+    '''
     def add_ship(self, startx, starty, endx, endy, size, colour):
         check = self.board_add_ship(startx, starty, endx, endy, size)
         if check != None:
@@ -84,6 +94,10 @@ class VisibleEnemyBoard(VisibleBoard):
             for rect in row:
                 pygame.draw.rect(self.display, WHITE, (rect.x, rect.y, rect.width, rect.height))
 
+    '''
+    Add a ship with the provided coordinates to the VisibleEnemyBoard.
+    Each coordinate of the ship is represented as a white Rectangle.
+    '''
     def add_ship(self, startx, starty, endx, endy, size):
         VisibleBoard.add_ship(self, startx, starty, endx, endy, size, WHITE)
 
@@ -99,5 +113,9 @@ class VisibleUserBoard(VisibleBoard):
             for rect in row:
                 pygame.draw.rect(self.display, WHITE, (rect.x, rect.y, rect.width, rect.height))
 
+    '''
+    Add a ship with the provided coordinates to the VisibleUserBoard.
+    Each coordinate of the ship is represented as a grey Rectangle.
+    '''
     def add_ship(self, startx, starty, endx, endy, size):
         VisibleBoard.add_ship(self, startx, starty, endx, endy, size, GREY)

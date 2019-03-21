@@ -35,16 +35,7 @@ class Stats():
             self.remaining_ships = self.remaining_ships - 1
         return self.remaining_ships
 
-    ##def display_all_stats(self): #copy in controller class 
-        ##pygame.font.init() call this in start
-        ##text = pygame.font.SysFont(pygame.font.get_default_font(),30)
-        ##text_for_score = text.render("Total Score: " + self.score, False, (0,0,0))
-        ##text_for_total_ships = text.render("Total number of ships: " + self.number_of_ships, False, (0,0,0))
-        ##text_for_remaining_ships = text.render("Total number of remaining ships: " + self.remaining_ships, False, (0,0,0))
-        ###screen.blit(text_for_score, position) #instead of screen, it will be the variable name we used to set the display mode
-        ###screen.blit(text_for_total_ships, position)
-        ###screen.blit(text_for_remaining_ships, position)
-        
+
         
         
 
