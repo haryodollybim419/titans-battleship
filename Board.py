@@ -10,8 +10,10 @@ A board is a standard 10*10 grid where each square can have status
 '''
 class Board:
 
+    '''
+    Create a Board object and set every position in the Board to NEUTRAL.
+    '''
     def __init__(self):
-
         self.status = [[],[],[],[],[],[],[],[],[],[]]
         self.ships = []
         self.number_of_ships = 0
@@ -20,14 +22,17 @@ class Board:
             for j in range(10):
                 self.status[i].append(NEUTRAL)
 
-
+    '''
+    Return True if there are no ships on the Board.
+    '''
     def all_ships_sunk(self):
-        if self.ships == []:
-            return True
-        else:
-            return False
+        return self.ships == []
+            
 
-
+    '''
+    Return the a tuple of the status of the move and a list of
+    the coordinates hit.
+    '''
     def move(self, x, y):
         ans = []
         if (0 <= x <= 9) and (0 <= y <= 9):
@@ -45,6 +50,10 @@ class Board:
         return (None, [])
 
 
+    '''
+    Return the starting and ending coordinates of the ship. If the dimensions
+    provided are invalid, return None.
+    '''
     def board_add_ship(self, start_x, start_y, end_x, end_y, size):
 
         #Check that coordinates are in bounds of the board
