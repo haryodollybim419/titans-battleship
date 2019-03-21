@@ -28,7 +28,7 @@ Once either all of the computer’s or the user’s battleship plots have been c
 ### For Mac:
   - Install pygame: ```$ pip3 install hg+http://bitbucket.org/pygame/pygame```.
   - Clone the repo: ```$ git clone https://github.com/haryodollybim419/titans-battleship.git```.
-  - Run the controller.py: ```$ python controller.py```.
+  - Run controller.py: ```$ python controller.py```.
  
 ## How to Play 
   1. Title Screen 
