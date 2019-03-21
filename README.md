@@ -36,13 +36,13 @@ Once either all of the computer’s or the user’s battleship plots have been c
 
 ## Screenshots 
   1. Title Screen 
-  <br /> Set 5 battleships of sizes 1, 2, 3, 4 and 5 squares horizontally as shown under required ships for the opponent to guess.
-  <br /> Press any key to start the game. 
   <p align="left">
   <img width="650" height="400" src="https://user-images.githubusercontent.com/47309090/54718306-97467000-4b30-11e9-8410-205aa249df90.png">
 </p>
 
   2. Ship Placement
+  <br /> Set 5 battleships of sizes 1, 2, 3, 4 and 5 squares horizontally as shown under required ships for the opponent to guess.
+  <br /> Press any key to start the game. 
 <p align="left">
 <img width="650" height="400" src="https://user-images.githubusercontent.com/47309090/54720132-07ef8b80-4b35-11e9-9401-3ae9f1534678.png">
 </p>
